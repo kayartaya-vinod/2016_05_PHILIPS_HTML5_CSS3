@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>HTML5 demos</title>
+	<style type="text/css">
+		body {
+			padding: 50px;
+		}
+
+		/* create a new custom transition effect such as rotate */
+		@-webkit-keyframes customEffect {
+			0% {
+				-webkit-transform: scale(.3);
+			}
+			50% {
+				-webkit-transform: rotate(180deg) scale(1);
+			}
+			100%{
+				-webkit-transform: scale(.3);
+			}
+		}
+
+
+		@-webkit-keyframes pulse {
+			0%{
+				-webkit-transform: translateX(0px);
+			}
+			30%{
+				-webkit-transform: translateX(-30px);
+			}
+			60%{
+				-webkit-transform: translateX(30px);
+			}
+			100%{
+				-webkit-transform: translateX(0px);
+			}
+		}
+
+
+		.customAnim {
+			-webkit-animation: customEffect 1000ms 1 ease-in;
+		}
+
+		.pulsate {
+			-webkit-animation: pulse 200ms 4 ease-out
+		}
+
+	</style>
+</head>
+<body>
+<h1>HTML5 demos</h1>
+<hr />
+
+<img src="images/gummies.jpg" id="img1" />
+
+<script type="text/javascript">
+	document.getElementById("img1").onclick = function(){
+		if(this.className!='pulsate'){
+			this.className = 'pulsate';
+		}
+		else {
+			this.className = 'customAnim';
+		}
+	};
+</script>
+</body>
+</html>

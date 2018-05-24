@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Geo location demo</title>
+	<script type="text/javascript"
+		src="library/jquery-1.12.3.js"></script>
+
+	<script type="text/javascript">
+
+	// dom ready event handler
+	$(function(){
+		if(!window.navigator.geolocation){
+			alert("Sorry, geolocation is not supported by this browser");
+			return;
+		}
+
+		navigator.geolocation.getCurrentPosition(function(gps){
+			var lat = gps.coords.latitude,
+				lon = gps.coords.longitude;
+
+			$("#geodata").css("display", "block");
+			$("#lat").html(lat);
+			$("#lon").html(lon);
+
+			var url = "http://maps.googleapis.com/maps/api/staticmap?size=500x400&zoom=16&sensor=false&center=" + lat + "," + lon;
+			
+			$("<img>").attr("src", url).appendTo("#geodata");	
+		});
+	});
+	</script>
+</head>
+<body>
+
+<h1 style="display: inline">Geo location demo</h1> hello
+<div id="geodata" style="display: none">
+
+Latitude: <span id="lat"></span> <br />
+Longitude: <span id="lon"></span> <br />
+
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

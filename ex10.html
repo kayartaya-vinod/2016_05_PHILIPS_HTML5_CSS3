@@ -1,0 +1,162 @@
+<html>
+<head>
+	<title>CSS3 demo</title>
+
+
+	<style type="text/css">
+		img#tampa {
+			box-shadow: 10px 10px 10px #008;
+			margin: 0 30px 30px 0;
+			float: left;
+		}
+
+		h1 {
+			color: #f00;
+			font-size: 70pt;
+			font-family: impact;
+			/*text-shadow: 10px 10px 10px #500;*/
+		}
+		.classic {
+			height: 55px;
+			width: 1.5in;
+			font-size: 1.2em;
+			box-shadow:  10px 10px 10px #500;
+		}
+		.box {
+			width: 150px;
+			height: 150px;
+			border: 1px solid #000;
+			margin: 20px;
+			display: inline-block;
+		}
+
+		#d1 {
+			background-image: -webkit-gradient(
+				linear, left top, right bottom,
+				from(#f00), to(yellow))
+		}
+
+		#d2 {
+			background-image: -webkit-gradient(
+				linear, left top, right bottom,
+				from(#f00), 
+				to(blue),
+				color-stop(.35, yellow),
+				color-stop(.65, green))
+		}
+
+		#d3 {
+			background-image: -webkit-gradient(
+				radial,
+				50% 50%,
+				10,
+				50% 50%,
+				75,
+				from(rgba(255,255,255,.5)),
+				to(rgba(0,0,0,.5))), url(images/tampa.jpg);
+		}
+
+		#img1 {
+			-webkit-mask-image: url(images/rip.png);
+		}
+
+		#img2 {
+			-webkit-mask-image: url(images/star.svg);
+		}
+
+		#img3 {
+			-webkit-mask-image: -webkit-gradient(
+				radial,
+				50% 50%,
+				10,
+				50% 50%,
+				75,
+				from(#000),
+				to(rgba(0,0,0,0)));
+			-moz-mask-image: -webkit-gradient(
+				radial,
+				50% 50%,
+				10,
+				50% 50%,
+				75,
+				from(#000),
+				to(rgba(0,0,0,0)));
+		}
+
+		.default {
+			background-color: #ccc;
+		}
+
+		#header1 {
+			font-size: 90pt;
+			font-weight: bolder;
+			color: transparent;
+			background-image: url(images/fireworks.jpg);
+			-webkit-background-clip: text;
+		}
+
+		.multicolumned {
+			font-size: 1.3em;
+			text-align: justify;
+
+			-webkit-column-count: 4;
+			-webkit-column-gap: 35px;
+			-webkit-column-rule: 1px solid #444;
+		}
+
+		#images img {
+			opacity: .3;
+			-webkit-transition: all 250ms ease-in;
+			-webkit-transform:  scale(.5);
+		}
+
+		#images img:hover {
+			opacity: 1;
+			cursor: pointer;
+			-webkit-transform: rotate(45deg) scale(2);
+		}
+
+		.paras p:nth-child(2) {
+			background-color: yellow;
+		}
+	</style>
+
+</head>
+<body>
+
+<h1>CSS3 demos</h1>
+
+
+<div id="images">
+	<img src="images/tampa.jpg">
+	<img src="images/fireworks.jpg">
+	<img src="images/spoon.jpg">
+	<img src="images/eye.jpg">
+</div>
+
+<div class="multicolumned">
+	<p><img src="images/tampa.jpg" id="tampa">On the Insert tab, the galleries include items that are designed to coordinate with the overall look of your document. You can use these galleries to insert tables, headers, footers, lists, cover pages, and other document building blocks. When you create pictures, charts, or diagrams, they also coordinate with your current document look.</p>
+	<p>You can easily change the formatting of selected text in the document text by choosing a look for the selected text from the Quick Styles gallery on the Home tab. You can also format text directly by using the other controls on the Home tab. Most controls offer a choice of using the look from the current theme or using a format that you specify directly.</p>
+	<p style="text-overflow: ellipses;">To change the overall look of your document, choose new Theme elements on the Page Layout tab. To change the looks available in the Quick Style gallery, use the Change Current Quick Style Set command. Both the Themes gallery and the Quick Styles gallery provide reset commands so that you can always restore the look of your document to the original contained in your current template.</p>
+</div>
+
+<h1 id="header1">CSS3 Masked Text</h1>
+<br><br><br>
+<div id="d1a" class="box default"></div>
+<div id="d2" class="box"></div>
+<div id="d3" class="box"></div>
+
+<br><br><br>
+<img src="images/tampa.jpg" id="img1">
+<img src="images/tampa.jpg" id="img2">
+<img src="images/cake.jpg" id="img3">
+
+<div class="paras">
+	<p>Para 1</p>
+	<p>Para 2</p>
+	<p>Para 3</p>
+	<p>Para 4</p>
+</div>
+
+</body>
+</html>

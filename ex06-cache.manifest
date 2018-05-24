@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# version 1.4
+
+CACHE:
+/ex06.css
+/ex06.js
+/library/jquery-1.12.3.js
+
+NETWORK:
+*

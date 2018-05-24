@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>HTML5 demos</title>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var v1 = document.querySelector("#vid1");
+			var b1 = document.querySelector("#btnPlay");
+			b1.onclick = function(){
+				v1.play();
+			};
+
+			document.querySelector("#btnPause")
+			.onclick = function(){
+				v1.pause();
+			};
+		};
+	</script>
+</head>
+<body>
+	<h1>HTML5 demos</h1>
+
+	<hr />
+
+	<h2>Video/Audio demo</h2>
+
+	<video id="vid1" >
+		<source src="media/billyBrowsers.ogg"></source>
+		<h3>this browser does not support video tag</h3>
+	</video>
+
+	<div>
+		<button id="btnPlay">Play</button>
+		<button id="btnPause">Pause</button>
+	</div>
+
+
+
+</body>
+</html>

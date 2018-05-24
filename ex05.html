@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html>
+<head>
+	<title></title>
+
+	<script type="text/javascript"
+		src="library/jquery-1.12.3.js"></script>
+
+	<script type="text/javascript">
+	$(function(){
+		$("button#getData").click(function(){
+			var xhr;
+
+			if(window.ActiveXObject){
+				// IE only
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			else if(window.XMLHttpRequest){
+				// rest of the browsers
+				xhr = new XMLHttpRequest();
+			}
+
+			var url = "http://vinod.co/rest/contacts.php?id=";
+			url += $("#contact_id").val();
+
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState==4){
+					var c1 = JSON.parse(xhr.responseText);
+					$("#first_name").html(c1.first_name);
+					$("#last_name").html(c1.last_name);
+					$("#city").html(c1.city);
+				}
+			};
+			xhr.open("GET", url, true);
+			xhr.send();
+		});
+	});
+	</script>
+</head>
+<body>
+
+<h1>AJAX using XHR</h1>
+<hr />
+
+<input type="number" placeholder="Enter id" id="contact_id" />
+
+<button id="getData">Get data</button>
+
+<div>
+<p>Firstname: <span id="first_name"></span> </p>
+<p>Lastname: <span id="last_name"></span> </p>
+<p>City: <span id="city"></span> </p>
+</div>
+
+
+</body>
+</html>

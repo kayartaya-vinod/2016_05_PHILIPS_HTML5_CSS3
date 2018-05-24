@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+
+		class Person {
+			constructor(args){
+				args = args || {};
+				this.name = args.name || "";
+				this.city = args.city || "Bangalore";
+				this.email = args.email || "";
+
+			}
+
+			print(){
+				console.log("Name", this.name);
+				console.log("City", this.city);
+				console.log("Email", this.email);
+			}
+		}
+
+		class Employee extends Person {
+
+			constructor(args){
+				super(args);
+				args = args || {};
+				this.id = args.id || null;
+				this.salary = args.salary || 15000.0;
+			}
+
+			print(){
+				console.log("Id", this.id);
+				super.print();
+				console.log("Salary Rs.", this.salary);
+			}
+		}
+
+
+		var e1 = new Employee({
+			id: 1,
+			name: "Vinod",
+			email: "vinod@vinod.co",
+			city: "Bangalore",
+			salary: 10000.0
+		});
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

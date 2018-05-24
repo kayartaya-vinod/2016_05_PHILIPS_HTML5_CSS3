@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+		function print(){
+			console.log("Name =", this.name);
+			console.log("City =", this.city);
+			console.log("Email =", this.email);
+		}
+
+		var p1 = {
+			name: "Vinod",
+			email: "vinod@vinod.co",
+			city: "Bangalore",
+			print: function (){
+				console.log("Name", this.name);
+				console.log("City", this.city);
+				console.log("Email", this.email);
+			}
+		};
+		print(); // this==> window
+		print.call(p1); // switch the context from window to "p1"
+
+
+		// constructor for Person object
+		function Person(args){
+			args = args || {};
+			// "this" here is the object constructed by "new" keyword
+			// console.log(JSON.stringify(this));
+			this.name = args.name || "";
+			this.city = args.city || "";
+			this.email = args.email || "";
+			// console.log(JSON.stringify(this));
+		};
+
+
+		// get the "prototype/template" of the class, for which
+		// Person is used as a constructor
+		Person.prototype.print = window.print;
+
+		var p2 = new Person({
+			name: "Vinod", 
+			email: "vinod@vinod.co"
+		});
+
+		function Employee(args){
+			args = args || {};
+			this.id = args.id || null;
+			this.salary = args.salary || 15000.0;
+			Person.call(this, args);
+		}
+		Employee.prototype = new Person();
+
+		Employee.prototype.print = function(){
+			console.log("id", this.id);
+			Person.prototype.print.call(this);
+			console.log("salary", this.salary);
+		};
+		var e1 = new Employee({
+			id: 1,
+			name: "Vinod",
+			email: "vinod@vinod.co",
+			city: "Bangalore",
+			salary: 10000.0
+		});
+
+
+		function Test(){
+			console.log("Inside the Test() constructor");
+			
+			function hello(){
+				console.log("Hello, World!");
+			}
+		}
+
+		var t1 = new Test();
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

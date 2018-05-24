@@ -1,0 +1,40 @@
+<html manifest="ex06-cache.manifest">
+<head>
+	<title>Offline storage demo</title>
+	<link rel="stylesheet" type="text/css" href="ex06.css">
+	<script type="text/javascript"
+		src="library/jquery-1.12.3.js"></script>
+	<script type="text/javascript" src="ex06.js"></script>
+
+	<script type="text/javascript">
+		window.applicationCache.addEventListener('updateready', function(e) {
+  if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+    window.applicationCache.swapCache();
+    if (confirm('A new version of this site is available. Load it?')) {
+      window.location.reload();
+    }
+  }
+}, false);
+	</script>
+</head>
+<body>
+<h1>Offline storage demo</h1>
+
+<hr />
+
+<div class="form">
+	<input type="text" placeholder="Name" id="name" 
+		required minlength="3" /><br /><br />
+	<input type="email" placeholder="Email id" id="email" 
+		required /><br /><br />
+
+	<button id="btnAdd">Add to list</button>
+
+
+</div>
+	
+<div class="list">
+	<ul></ul>
+</div>
+</body>
+</html>

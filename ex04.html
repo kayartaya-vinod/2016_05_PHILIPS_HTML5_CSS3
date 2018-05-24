@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+		function delayAndExecute(cb, ms){
+
+			if(!cb || typeof cb != "function"){
+				throw new Error("no callback or callback is not a function!");
+			}
+
+			var ms1 = new Date().getTime();
+			while(true){
+				var ms2 = new Date().getTime();
+				if((ms2-ms1)>=ms){
+					break;
+				}
+			} 
+
+			cb();
+		}
+
+		var test = function (){
+			console.log("test() begins...");
+
+			setInterval(function(){
+				console.log("After a delay of 1 seconds!");
+			}, 1000);
+
+			delayAndExecute(function(){
+				console.log("After a delay of 5 seconds!");
+			}, 5000);
+
+			console.log("test() ends here.")
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

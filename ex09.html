@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>WebSQL Demo</title>
+	<script type="text/javascript"
+		src="library/jquery-1.12.3.js"></script>
+	
+	<script type="text/javascript">
+	$(function(){
+		var db = window.openDatabase("contacts-db", "1.0", "Contacts DB", 200000, function(db){
+			// executed only when the DB is created
+			db.transaction(function(tx){
+				tx.executeSql("create table contacts(name varchar(20), city varchar(20), email varchar(100))");
+			})
+		});
+
+		showContacts(db);
+
+		$("#btnAdd").click(function(){
+			// execute SQL via a transaction
+			db.transaction(function(tx){
+				var name = $("#name").val(),
+					city = $("#city").val(),
+					email = $("#email").val();
+
+				tx.executeSql("insert into contacts values(?,?,?)",
+					[name, city, email], 
+					function(tx, result){ // success callback
+						alert("Inserted a contact with id "+ result.insertId);
+						$("div#form input").val("");
+						$("#list ul li").remove();
+						showContacts(db);
+						
+					}, function(){ // error callback
+						console.error("Not inserted", arguments);
+					});
+			});
+
+		});
+
+
+
+	});
+
+	function showContacts(db){
+		db.transaction(function(tx){
+			tx.executeSql("select * from contacts", [], 
+				function(tx, result){ // success callback
+					if(result.rows.length==0) return;
+					
+					for(var i=0; i<result.rows.length; i++){
+						var c = result.rows.item(i);
+						var li = $("<li>").append(c.name + ", " + c.city + " [" + c.email + "]");
+						$("#list ul").append(li);
+					}
+				}, 
+				function(){ // error callback
+
+				});
+		});
+	}
+	</script>
+</head>
+<body>
+<h1>WebSQL Demo</h1>
+
+<hr />
+<div id="form">
+	<input placeholder="Enter name" id="name" /><br />
+	<input placeholder="Enter city" id="city" /><br />
+	<input placeholder="Enter email" id="email" size="50" /><br />
+
+	<button id="btnAdd">Add to db</button>
+</div>
+
+<div id="list">
+<ul></ul>
+</div>
+
+</body>
+</html>
